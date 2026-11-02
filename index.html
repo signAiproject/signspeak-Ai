@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a35">
+  <title>SignSpeak AI — ISL Translator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="SignSpeak AI home"><span class="brand-icon">✋</span><span>SignSpeak <b>AI</b></span></a>
+    <span class="top-pill"><span class="dot"></span> ISL PROJECT PROTOTYPE</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">ACCESSIBILITY • COMPUTER VISION • AI</div>
+      <h1>Your hands have a voice.</h1>
+      <p class="hero-copy">A camera-first workspace designed to help translate supported Indian Sign Language (ISL) signs into English.</p>
+      <div class="hero-tags"><span>● Camera first</span><span>● English text</span><span>● Speech output</span></div>
+    </section>
+
+    <section class="workspace">
+      <div class="panel camera-panel">
+        <div class="panel-heading">
+          <div><span class="step">01</span><h2>Sign input</h2></div>
+          <span class="status" id="cameraStatus"><i></i> Camera off</span>
+        </div>
+        <div class="camera-stage" id="cameraStage">
+          <video id="camera" autoplay playsinline muted></video>
+          <canvas id="overlay"></canvas>
+          <div class="camera-placeholder" id="cameraPlaceholder">
+            <div class="camera-symbol">▣</div>
+            <strong>Your camera preview appears here</strong>
+            <span>Allow camera access when your browser asks.</span>
+          </div>
+          <div class="camera-badge" id="handBadge">Hand tracking not started</div>
+        </div>
+        <div class="button-row">
+          <button class="btn primary" id="startCamera">Start camera</button>
+          <button class="btn secondary" id="stopCamera" disabled>Stop</button>
+        </div>
+        <div class="divider"><span>OR USE A FILE</span></div>
+        <label class="upload-box" for="fileInput">
+          <span class="upload-icon">↑</span>
+          <span><b>Upload an image or video</b><small>Choose a sign image or a short video to preview it.</small></span>
+          <span class="choose-label">Browse</span>
+        </label>
+        <input id="fileInput" type="file" accept="image/*,video/*" hidden>
+        <div id="filePreview" class="file-preview" hidden></div>
+        <p class="small-note">Privacy: camera frames are processed in your browser for hand tracking. This prototype does not upload your camera feed.</p>
+      </div>
+
+      <div class="panel result-panel">
+        <div class="panel-heading">
+          <div><span class="step">02</span><h2>English output</h2></div>
+          <span class="beta">AI LAB</span>
+        </div>
+        <div class="recognition-card">
+          <div class="recognition-label">RECOGNITION STATUS</div>
+          <div class="recognition-main" id="recognitionStatus">Ready to begin</div>
+          <div class="confidence-line"><span>Confidence</span><b id="confidence">—</b></div>
+          <div class="confidence-track"><span id="confidenceBar"></span></div>
+          <p class="status-detail" id="statusDetail">Start the camera to initialise hand tracking. ISL translation needs a trained ISL recognition model.</p>
+        </div>
+        <div class="translation-box">
+          <div class="translation-title"><span>TRANSLATED ENGLISH</span><span class="live-label"><i></i> SESSION</span></div>
+          <p id="translationText" aria-live="polite">Your recognised English will appear here.</p>
+        </div>
+        <div class="button-row output-buttons">
+          <button class="btn primary" id="speakButton" disabled>▶ Speak translation</button>
+          <button class="btn secondary" id="clearButton">Clear</button>
+        </div>
+        <div class="demo-note">
+          <strong>Try the interface</strong>
+          <p>Until a model trained on ISL examples is connected, use the demo phrases below to test text and speech. They are demonstrations, not AI predictions.</p>
+          <div class="demo-buttons">
+            <button class="demo-chip" data-phrase="Hello">Hello</button>
+            <button class="demo-chip" data-phrase="Thank you">Thank you</button>
+            <button class="demo-chip" data-phrase="I need water">I need water</button>
+            <button class="demo-chip" data-phrase="Please help me">Please help me</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="history-panel">
+      <div class="history-heading"><div><span class="step">03</span><h2>Session history</h2></div><button class="text-button" id="clearHistory">Clear history</button></div>
+      <div id="historyList" class="history-list"><div class="empty-history">Your translations will appear here during this session.</div></div>
+    </section>
+
+    <section class="how-section">
+      <div><div class="eyebrow">HOW IT WORKS</div><h2>From sign to understanding.</h2></div>
+      <div class="steps-grid">
+        <article><span>1</span><h3>Capture</h3><p>The camera receives the sign after you grant permission.</p></article>
+        <article><span>2</span><h3>Track</h3><p>Hand landmarks can be detected with browser-based computer vision.</p></article>
+        <article><span>3</span><h3>Recognise</h3><p>A trained ISL model must classify signs and movements.</p></article>
+        <article><span>4</span><h3>Communicate</h3><p>Supported predictions can be shown as English text and spoken aloud.</p></article>
+      </div>
+      <p class="disclaimer"><b>Important:</b> This is a starter prototype. Hand tracking alone does not translate sign language. No trained ISL classifier is included yet, so live camera and uploaded files are not automatically translated. Full ISL translation requires validated ISL data and a model that accounts for movement and context.</p>
+    </section>
+  </main>
+
+  <footer><span>✋ SignSpeak AI</span><span>Built for accessible communication • ISL-focused prototype</span></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

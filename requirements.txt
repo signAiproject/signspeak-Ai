@@ -1,0 +1,2 @@
+# No Python packages are required for the current browser-only prototype.
+# A future Python inference server may use Flask, opencv-python, mediapipe, and tensorflow.
